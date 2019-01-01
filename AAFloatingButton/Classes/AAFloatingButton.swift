@@ -144,12 +144,22 @@ extension AAFloatingButton {
         var dim: CGFloat = UIScreen.main.bounds.height / 8
         var y: CGFloat = UIScreen.main.bounds.height - dim - 20
         var x: CGFloat = UIScreen.main.bounds.width - dim - 20
+        //var currentDeviceOrientation = UIDevice.current.orientation
         
+        //if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
+        if ((UIDevice.current.orientation).isLandscape) {
+            dim = UIScreen.main.bounds.height / 6
+            y = UIScreen.main.bounds.height - dim - 20
+            x = UIScreen.main.bounds.width - dim - 20
+        }
+        /*
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
             dim = UIScreen.main.bounds.height / 6
             y = UIScreen.main.bounds.height - dim - 20
             x = UIScreen.main.bounds.width - dim - 20
         }
+        */
+
         
         let newFrame: CGRect = CGRect(x: 0, y: 0, width: dim, height: dim)
         
@@ -207,7 +217,7 @@ extension AAFloatingButton {
         
         let groupAnim = CAAnimationGroup()
         groupAnim.duration = 0.7
-        groupAnim.fillMode = kCAFillModeForwards
+        groupAnim.fillMode = CAMediaTimingFillMode.forwards
         groupAnim.isRemovedOnCompletion = false
         groupAnim.animations = [shadowAnim, opacityAnim]
         
